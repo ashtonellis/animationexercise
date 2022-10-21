@@ -32,8 +32,8 @@ let stR = 60;
 let stG = 40;
 let stB = 200;
 let rectSize2 = 30;
-let rectX2 = 0;
-let rectY2 = 370;
+let rectX2 = -30;
+let rectY2 = 400;
 let rDir1 = true;
 let rDir2 = true;
 let rDir3 = false;
@@ -49,12 +49,6 @@ function setup() {
 
 function draw() {
   background(60,40,200);
-
-  push();
-  strokeWeight(10);
-  stroke(stR,stG,stB);
-  line(0, 230, 400, 230);
-  pop();
 
   push();
   strokeWeight(0)
@@ -85,6 +79,12 @@ function draw() {
     cirUp = false;}
    pop();
 
+   push();
+   strokeWeight(10);
+   stroke(stR,stG,stB);
+   line(0, 230, 400, 230);
+   pop();
+ 
   push();
   strokeWeight(0)
   fill(rectR,rectG,rectB);
@@ -126,20 +126,24 @@ function draw() {
   strokeWeight(0)
   fill(rectR,rectG,rectB);
   rect(rectX2,rectY2,rectSize2);
+  if (rDir3) {
+    rectX2-=.6;
+    rectY2--;
+   } else { if (rDir4) {
+    rectX2-=.6;
+    rectY2++;
+   } else {
     if (rDir1){
-      rectX2+=.75;
+      rectX2+=.6;
       rectY2--;
    } else { if (rDir2) {
       rectX2+=.6;
       rectY2++;
-     } else { if (rDir3) {
-      rectX2-=.6;
-      rectY2--;
-     } else { if (rDir4) {
-      rectX2-=.6;
-      rectY2++;
-     } else rect(rectX2,rectY2,rectSize2); 
-    } } }
+     } else {
+      rectX2 = -30;
+      rectY2 = 400;
+     }
+   } } }
 
     if (rectY2 < 235) {
       rDir1 = false;
@@ -149,10 +153,11 @@ function draw() {
       rDir2 = false;
       rDir1 = true;
     }
-    if (rectX2 > 370) {
+    if (rectX2 > 400) {
       rDir1 = false;
       rDir2 = false;
-    }      
+    }   
+    
   
     
     
